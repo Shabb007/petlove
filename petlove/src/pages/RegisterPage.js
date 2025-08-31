@@ -1,298 +1,43 @@
-import React, { useState } from "react";
-import { Eye, EyeOff, User, Mail, Lock } from "lucide-react";
-import PetBlock from "../components/PetBlock";
-import { useAuth } from "../hooks/AuthContext";
+import { Link } from "react-router-dom";
+import PetBlock from "../components/PetBlock.jsx";
+import Title from "../components/Title.jsx";
+import RegistrationForm from "../components/RegistrationForm.jsx";
+import registerMobImg from "../assets/img/register-mob@1x.webp";
+import registerMobImg2x from "../assets/img/register-mob@2x.webp";
+import registerTabImg from "../assets/img/register-tab@1x.webp";
+import registerTabImg2x from "../assets/img/register-tab@2x.webp";
+import registerDeskImg from "../assets/img/register-desk@1x.webp";
+import registerDeskImg2x from "../assets/img/register-desk@2x.webp";
 
-const RegisterPage = ({ setCurrentPage }) => {
-  const { login } = useAuth();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
-  const [errors, setErrors] = useState({});
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const validateForm = () => {
-    const newErrors = {};
-
-    // Name validation
-    if (!formData.name) {
-      newErrors.name = "Name is required";
-    } else if (formData.name.length < 2) {
-      newErrors.name = "Name must be at least 2 characters long";
-    }
-
-    // Email validation
-    const emailPattern = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
-    if (!formData.email) {
-      newErrors.email = "Email is required";
-    } else if (!emailPattern.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address";
-    }
-
-    // Password validation
-    if (!formData.password) {
-      newErrors.password = "Password is required";
-    } else if (formData.password.length < 7) {
-      newErrors.password = "Password must be at least 7 characters long";
-    }
-
-    // Confirm password validation
-    if (!formData.confirmPassword) {
-      newErrors.confirmPassword = "Please confirm your password";
-    } else if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = "Passwords do not match";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-
-    // Clear error when user starts typing
-    if (errors[name]) {
-      setErrors((prev) => ({
-        ...prev,
-        [name]: "",
-      }));
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!validateForm()) {
-      return;
-    }
-
-    setIsLoading(true);
-
-    try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      // Mock successful registration
-      const userData = {
-        id: 1,
-        name: formData.name,
-        email: formData.email,
-        avatar:
-          "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face",
-      };
-
-      login(userData);
-      setCurrentPage("profile");
-    } catch (error) {
-      setErrors({ submit: "Registration failed. Please try again." });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
+const RegistrationPage = () => {
   return (
-    <div className="min-h-[80vh] flex items-center py-12">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-          {/* Image Section */}
-          <div className="order-2 md:order-1">
-            <PetBlock />
-          </div>
-
-          {/* Form Section */}
-          <div className="order-1 md:order-2 max-w-md mx-auto w-full">
-            <div className="text-center mb-8">
-              <h1 className="text-3xl font-bold text-gray-800 mb-2">
-                Join PetLove
-              </h1>
-              <p className="text-gray-600">
-                Create your account to start connecting with pets
-              </p>
-            </div>
-
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Name Field */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Full Name
-                </label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <User className="h-5 w-5 text-gray-400" />
-                  </div>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    className={`w-full pl-10 pr-3 py-3 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all ${
-                      errors.name ? "border-red-500" : "border-gray-300"
-                    }`}
-                    placeholder="Enter your full name"
-                  />
-                </div>
-                {errors.name && (
-                  <p className="mt-1 text-sm text-red-600">{errors.name}</p>
-                )}
-              </div>
-
-              {/* Email Field */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Email Address
-                </label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Mail className="h-5 w-5 text-gray-400" />
-                  </div>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className={`w-full pl-10 pr-3 py-3 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all ${
-                      errors.email ? "border-red-500" : "border-gray-300"
-                    }`}
-                    placeholder="Enter your email"
-                  />
-                </div>
-                {errors.email && (
-                  <p className="mt-1 text-sm text-red-600">{errors.email}</p>
-                )}
-              </div>
-
-              {/* Password Field */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Password
-                </label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Lock className="h-5 w-5 text-gray-400" />
-                  </div>
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    name="password"
-                    value={formData.password}
-                    onChange={handleInputChange}
-                    className={`w-full pl-10 pr-10 py-3 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all ${
-                      errors.password ? "border-red-500" : "border-gray-300"
-                    }`}
-                    placeholder="Create a password"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                  >
-                    {showPassword ? (
-                      <EyeOff className="h-5 w-5 text-gray-400" />
-                    ) : (
-                      <Eye className="h-5 w-5 text-gray-400" />
-                    )}
-                  </button>
-                </div>
-                {errors.password && (
-                  <p className="mt-1 text-sm text-red-600">{errors.password}</p>
-                )}
-              </div>
-
-              {/* Confirm Password Field */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Confirm Password
-                </label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Lock className="h-5 w-5 text-gray-400" />
-                  </div>
-                  <input
-                    type={showConfirmPassword ? "text" : "password"}
-                    name="confirmPassword"
-                    value={formData.confirmPassword}
-                    onChange={handleInputChange}
-                    className={`w-full pl-10 pr-10 py-3 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all ${
-                      errors.confirmPassword
-                        ? "border-red-500"
-                        : "border-gray-300"
-                    }`}
-                    placeholder="Confirm your password"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                  >
-                    {showConfirmPassword ? (
-                      <EyeOff className="h-5 w-5 text-gray-400" />
-                    ) : (
-                      <Eye className="h-5 w-5 text-gray-400" />
-                    )}
-                  </button>
-                </div>
-                {errors.confirmPassword && (
-                  <p className="mt-1 text-sm text-red-600">
-                    {errors.confirmPassword}
-                  </p>
-                )}
-              </div>
-
-              {/* Submit Button */}
-              <button
-                type="submit"
-                disabled={isLoading}
-                className="w-full bg-orange-500 text-white py-3 rounded-lg hover:bg-orange-600 font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
-              >
-                {isLoading ? (
-                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                ) : (
-                  "Create Account"
-                )}
-              </button>
-
-              {errors.submit && (
-                <p className="text-sm text-red-600 text-center">
-                  {errors.submit}
-                </p>
-              )}
-            </form>
-
-            {/* Login Link */}
-            <p className="mt-6 text-center text-gray-600">
-              Already have an account?{" "}
-              <button
-                onClick={() => setCurrentPage("login")}
-                className="text-orange-500 hover:text-orange-600 font-medium hover:underline"
-              >
-                Login here
-              </button>
-            </p>
-
-            {/* Terms */}
-            <p className="mt-4 text-xs text-gray-500 text-center">
-              By creating an account, you agree to our{" "}
-              <a href="#" className="text-orange-500 hover:underline">
-                Terms of Service
-              </a>{" "}
-              and{" "}
-              <a href="#" className="text-orange-500 hover:underline">
-                Privacy Policy
-              </a>
-            </p>
-          </div>
+    <section className="flex flex-col gap-2.5 pb-5 md:gap-4 md:pb-8 xl:flex-row xl:gap-8">
+      <PetBlock
+        mob={`${registerMobImg} 1x, ${registerMobImg2x} 2x`}
+        tab={`${registerTabImg} 1x, ${registerTabImg2x} 2x`}
+        desk={`${registerDeskImg} 1x, ${registerDeskImg2x} 2x`}
+        src={registerDeskImg}
+      />
+      <div className="rounded-[30px] bg-white p-5 md:rounded-[60px] md:px-35 md:py-7.5 xl:px-21 xl:py-[77px]">
+        <div className="mb-5 flex flex-col gap-3 md:mb-8 md:gap-4 xl:w-106">
+          <Title>Registration</Title>
+          <p className="md:text-lg md:leading-5.5 md:tracking-[-0.02em]">
+            Thank you for your interest in our platform.
+          </p>
         </div>
+        <RegistrationForm />
+        <p className="text-center text-xs leading-3.5 tracking-[-0.36px] text-black/50 md:text-sm md:leading-5 md:tracking-[-0.03em]">
+          Already have an account?{" "}
+          <Link
+            className="text-orange font-bold underline decoration-solid decoration-auto underline-offset-auto md:text-sm md:leading-5 md:tracking-[-0.03em]"
+            to="/login"
+          >
+            Login
+          </Link>
+        </p>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default RegisterPage;
+export default RegistrationPage;

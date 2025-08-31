@@ -1,117 +1,58 @@
-import React, { useState, useEffect } from "react";
-import SearchField from "../components/SearchField";
-import NewsItem from "../components/NewsItem";
-import Pagination from "../components/Pagination";
-import { mockNews } from "../data/mockData";
-import { Newspaper } from "lucide-react";
+import Title from "../components/Title.jsx";
+import SearchField from "../components/SearchField.jsx";
+import NewsList from "../components/NewsList.jsx";
+import Pagination from "../components/Pagination.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { fetchNews } from "../redux/news/operations.js";
+import { selectTotalPages } from "../redux/news/selectors.js";
 
 const NewsPage = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [filteredNews, setFilteredNews] = useState(mockNews);
-  const itemsPerPage = 6;
+  const dispatch = useDispatch();
+  const [inputValue, setInputValue] = useState("");
+  const [keyword, setKeyword] = useState("");
+  const totalPages = useSelector(selectTotalPages);
+  const [pageNumber, setPageNumber] = useState(1);
 
   useEffect(() => {
-    // Filter news based on search query
-    const filtered = mockNews.filter(
-      (news) =>
-        news.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        news.description.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    setFilteredNews(filtered);
-    setCurrentPage(1); // Reset to first page when search changes
-  }, [searchQuery]);
+    dispatch(fetchNews({ page: pageNumber, keyword }));
+  }, [dispatch, pageNumber, keyword]);
 
-  // Calculate pagination
-  const totalPages = Math.ceil(filteredNews.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentNews = filteredNews.slice(startIndex, endIndex);
-
-  const handleSearch = (query) => {
-    setSearchQuery(query);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const query = form.elements.search.value;
+    setKeyword(query);
+    setInputValue("");
   };
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-    // Scroll to top when page changes
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleClearQuery = () => {
+    setInputValue("");
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      {/* Header */}
-      <div className="text-center mb-8">
-        <div className="flex items-center justify-center mb-4">
-          <Newspaper className="text-orange-500 mr-3" size={32} />
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-800">
-            Latest Pet News
-          </h1>
-        </div>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Stay updated with the latest news, tips, and stories from the pet
-          world.
-        </p>
-      </div>
-
-      {/* Search */}
-      <div className="max-w-md mx-auto mb-8">
-        <SearchField placeholder="Search news..." onSearch={handleSearch} />
-      </div>
-
-      {/* Results info */}
-      {searchQuery && (
-        <div className="mb-6">
-          <p className="text-gray-600">
-            {filteredNews.length > 0
-              ? `Found ${filteredNews.length} article${
-                  filteredNews.length !== 1 ? "s" : ""
-                } for "${searchQuery}"`
-              : `No articles found for "${searchQuery}"`}
-          </p>
-        </div>
-      )}
-
-      {/* News Grid */}
-      {currentNews.length > 0 ? (
-        <>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-            {currentNews.map((news) => (
-              <NewsItem key={news.id} news={news} />
-            ))}
-          </div>
-
-          {/* Pagination */}
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
+    <section className="pt-8 pb-20 md:pt-[59px] xl:px-8 xl:pt-17.5">
+      <div className="mb-6 flex flex-col gap-5 md:mb-11 md:flex-row md:items-center md:justify-between xl:mb-15">
+        <Title>News</Title>
+        <form onSubmit={handleSubmit}>
+          <SearchField
+            inputValue={inputValue}
+            handleInputChange={handleInputChange}
+            handleClearQuery={handleClearQuery}
           />
-        </>
-      ) : (
-        <div className="text-center py-12">
-          <div className="text-gray-400 mb-4">
-            <Newspaper size={48} className="mx-auto" />
-          </div>
-          <h3 className="text-xl font-semibold text-gray-600 mb-2">
-            {searchQuery ? "No articles found" : "No news available"}
-          </h3>
-          <p className="text-gray-500">
-            {searchQuery
-              ? "Try adjusting your search terms or browse all articles."
-              : "Check back later for the latest pet news and updates."}
-          </p>
-          {searchQuery && (
-            <button
-              onClick={() => setSearchQuery("")}
-              className="mt-4 text-orange-500 hover:text-orange-600 font-medium"
-            >
-              Clear search
-            </button>
-          )}
-        </div>
-      )}
-    </div>
+        </form>
+      </div>
+      <NewsList />
+      <Pagination
+        currentPage={pageNumber}
+        totalPages={totalPages}
+        setPageNumber={setPageNumber}
+      />
+    </section>
   );
 };
 

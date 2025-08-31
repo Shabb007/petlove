@@ -1,0 +1,9 @@
+export const selectNotices = (state) => state.notices.notices;
+export const selectIsLoading = (state) => state.notices.isLoading;
+export const selectError = (state) => state.notices.error;
+export const selectNotice = (state) => state.notices.notice;
+export const selectCategories = (state) => state.notices.categories;
+export const selectGenders = (state) => state.notices.genders;
+export const selectSpecies = (state) => state.notices.species;
+export const selectFavorites = (state) => state.notices.favorites;
+export const selectTotalPages = (state) => state.notices.totalPages;
