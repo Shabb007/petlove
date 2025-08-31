@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme {
+  --color-black: #262626;
+  --color-black-secondary: #2b2b2a;
+  --color-orange: #f6b83d;
+  --color-orange-secondary: #f9b020;
+  --color-brown-light: #fff4df;
+  --color-brown-light-secondary: #fbe7c1;
+  --color-white: #ffffff;
+  --color-red: #ef2447;
+  --color-red-secondary: #f43f5e;
+  --color-green: #08aa83;
+  --color-blue: #54adff;
+  --color-gray-light: #f4f4f4;
+
+  --animate-loader: loader-spin 2s linear infinite;
+
+  @keyframes loader-spin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
