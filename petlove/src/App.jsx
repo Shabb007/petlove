@@ -9,14 +9,14 @@ import { refreshUser } from "./redux/users/operations.js";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import RestrictedRoute from "./components/RestrictedRoute.jsx";
 import MainScreen from "./components/MainScreen.jsx";
-const HomePage = lazy(() => import("./pages/HomePage.js"));
-const NewsPage = lazy(() => import("./pages/NewsPage.js"));
-const NoticesPage = lazy(() => import("./pages/NoticesPage.js"));
-const FriendsPage = lazy(() => import("./pages/FriendsPage.js"));
-const RegistrationPage = lazy(() => import("./pages/RegisterPage.js"));
-const LoginPage = lazy(() => import("./pages/LoginPage.js"));
-const ProfilePage = lazy(() => import("./pages/ProfilePage.js"));
-const AddPetPage = lazy(() => import("./pages/AddPetPage.js"));
+const HomePage = lazy(() => import("./pages/HomePage.jsx"));
+const NewsPage = lazy(() => import("./pages/NewsPage.jsx"));
+const NoticesPage = lazy(() => import("./pages/NoticesPage.jsx"));
+const FriendsPage = lazy(() => import("./pages/FriendsPage.jsx"));
+const RegistrationPage = lazy(() => import("./pages/RegisterPage.jsx"));
+const LoginPage = lazy(() => import("./pages/LoginPage.jsx"));
+const ProfilePage = lazy(() => import("./pages/ProfilePage.jsx"));
+const AddPetPage = lazy(() => import("./pages/AddPetPage.jsx"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage.jsx"));
 
 const App = () => {

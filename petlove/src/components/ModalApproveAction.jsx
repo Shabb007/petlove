@@ -1,5 +1,5 @@
 import sprite from "../assets/sprite.svg";
-import catImg from "../assets/img/cat@1x.webp.url";
+import catImg from "../assets/img/cat@1x.webp";
 import catImg2x from "../assets/img/cat@2x.webp";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../redux/users/operations.js";
