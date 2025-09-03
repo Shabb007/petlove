@@ -1,6 +1,6 @@
 import sprite from "../assets/sprite.svg";
-import catImg from "../assets/img/cat@1x.webp";
-import catImg2x from "../assets/img/cat@2x.webp";
+import catImg from "../assets/img/cat1.jpeg";
+import catImg2x from "../assets/img/cat2.jpeg";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../redux/users/operations.js";
 import { useNavigate } from "react-router-dom";

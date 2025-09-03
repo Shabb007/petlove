@@ -1,11 +1,11 @@
 import AddPetForm from "../components/AddPetForm.jsx";
 import PetBlock from "../components/PetBlock.jsx";
-import addPetMobImg from "../assets/img/add-pet-mob@1x.webp";
-import addPetMobImg2x from "../assets/img/add-pet-mob@2x.webp";
-import addPetTabImg from "../assets/img/add-pet-tab@1x.webp";
-import addPetTabImg2x from "../assets/img/add-pet-tab@2x.webp";
-import addPetDeskImg from "../assets/img/add-pet-desk@1x.webp";
-import addPetDeskImg2x from "../assets/img/add-pet-desk@2x.webp";
+import addPetMobImg from "../assets/img/addpetmob1.jpeg";
+import addPetMobImg2x from "../assets/img/addpetmob2.jpeg";
+import addPetTabImg from "../assets/img/addpettab1.jpeg";
+import addPetTabImg2x from "../assets/img/addpettab2.jpeg";
+import addPetDeskImg from "../assets/img/addpetdesk1.jpeg";
+import addPetDeskImg2x from "../assets/img/addpetdesk2.jpeg";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getNoticeSpecies } from "../redux/notices/operations.js";

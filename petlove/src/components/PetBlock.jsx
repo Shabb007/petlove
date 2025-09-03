@@ -1,7 +1,7 @@
-import dogImg from "../assets/img/dog@1x.webp";
-import dogImg2x from "../assets/img/dog@2x.webp";
-import catImg from "../assets/img/cat@1x.webp";
-import catImg2x from "../assets/img/cat@2x.webp";
+import dogImg from "../assets/img/dog1.jpeg";
+import dogImg2x from "../assets/img/dog2.jpeg";
+import catImg from "../assets/img/cat1.jpeg";
+import catImg2x from "../assets/img/cat2.jpeg";
 import { useLocation } from "react-router-dom";
 import useResponsive from "../hooks/useResponsive.js";
 
