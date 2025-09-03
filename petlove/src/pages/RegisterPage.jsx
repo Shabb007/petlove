@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 import PetBlock from "../components/PetBlock.jsx";
 import Title from "../components/Title.jsx";
 import RegistrationForm from "../components/RegistrationForm.jsx";
-import registerMobImg from "../assets/img/register-mob@1x.webp";
-import registerMobImg2x from "../assets/img/register-mob@2x.webp";
-import registerTabImg from "../assets/img/register-tab@1x.webp";
-import registerTabImg2x from "../assets/img/register-tab@2x.webp";
-import registerDeskImg from "../assets/img/register-desk@1x.webp";
-import registerDeskImg2x from "../assets/img/register-desk@2x.webp";
+import registerMobImg from "../assets/img/registermob1.jpeg";
+import registerMobImg2x from "../assets/img/registermob2.jpeg";
+import registerTabImg from "../assets/img/registertab1.jpeg";
+import registerTabImg2x from "../assets/img/registertab2.jpeg";
+import registerDeskImg from "../assets/img/registerdesk1.jpeg";
+import registerDeskImg2x from "../assets/img/registerdesk2.jpeg";
 
 const RegistrationPage = () => {
   return (
