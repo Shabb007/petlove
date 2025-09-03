@@ -1,11 +1,11 @@
-import mainMobImg from "../assets/img/main-mob@1x.webp";
-import mainMobImg2x from "../assets/img/main-mob@2x.webp";
-import mainTabImg from "../assets/img/main-tab@1x.webp";
-import mainTabImg2x from "../assets/img/main-tab@2x.webp";
-import mainDeskImg from "../assets/img/main-desk@1x.webp";
-import mainDeskImg2x from "../assets/img/main-desk@2x.webp";
-import loaderMob from "../assets/img/loader@mob.webp";
-import loaderTab from "../assets/img/loader@tab.webp";
+import mainMobImg from "../assets/img/mainmob1.jpeg";
+import mainMobImg2x from "../assets/img/mainmob2.jpeg";
+import mainTabImg from "../assets/img/maintab1.jpeg";
+import mainTabImg2x from "../assets/img/maintab2.jpeg";
+import mainDeskImg from "../assets/img/maindesk1.jpeg";
+import mainDeskImg2x from "../assets/img/maindesk2.jpeg";
+import loaderMob from "../assets/img/loadermob.jpeg";
+import loaderTab from "../assets/img/loadertab.jpeg";
 import { useEffect, useState } from "react";
 import useResponsive from "../hooks/useResponsive.js";
 

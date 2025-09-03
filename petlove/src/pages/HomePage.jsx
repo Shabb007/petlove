@@ -1,9 +1,9 @@
-import homeMobImg from "../assets/img/home-mob@1x.webp";
-import homeMobImg2x from "../assets/img/home-mob@2x.webp";
-import homeTabImg from "../assets/img/home-tab@1x.webp";
-import homeTabImg2x from "../assets/img/home-tab@2x.webp";
-import homeDeskImg from "../assets/img/home-desk@1x.webp";
-import homeDeskImg2x from "../assets/img/home-desk@2x.webp";
+import homeMobImg from "../assets/img/homemob1.jpeg";
+import homeMobImg2x from "../assets/img/homemob2.jpeg";
+import homeTabImg from "../assets/img/hometab1.jpeg";
+import homeTabImg2x from "../assets/img/hometab2.jpeg";
+import homeDeskImg from "../assets/img/homedesk1.jpeg";
+import homeDeskImg2x from "../assets/img/homedesk2.jpeg";
 
 const HomePage = () => {
   return (
