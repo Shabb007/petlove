@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 import PetBlock from "../components/PetBlock.jsx";
 import Title from "../components/Title.jsx";
 import LoginForm from "../components/LoginForm.jsx";
-import loginMobImg from "../assets/img/login-mob@1x.webp";
-import loginMobImg2x from "../assets/img/login-mob@2x.webp";
-import loginTabImg from "../assets/img/login-tab@1x.webp";
-import loginTabImg2x from "../assets/img/login-tab@2x.webp";
-import loginDeskImg from "../assets/img/login-desk@1x.webp";
-import loginDeskImg2x from "../assets/img/login-desk@2x.webp";
+import loginMobImg from "../assets/img/loginmob1.jpeg";
+import loginMobImg2x from "../assets/img/loginmob2.jpeg";
+import loginTabImg from "../assets/img/logintab1.jpeg";
+import loginTabImg2x from "../assets/img/logintab2.jpeg";
+import loginDeskImg from "../assets/img/logindesk1.jpeg";
+import loginDeskImg2x from "../assets/img/logindesk2.jpeg";
 
 const LoginPage = () => {
   return (
