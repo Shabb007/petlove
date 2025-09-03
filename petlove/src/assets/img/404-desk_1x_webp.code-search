@@ -1,0 +1,9 @@
+# Query: 404-mob@1x.webp
+# ContextLines: 1
+
+1 sonuç - 1 dosya
+
+petlove/src/pages/NotFoundPage.jsx:
+  1  import { Link } from "react-router-dom";
+  2: import notFoundMobImg from "../assets/img/404errormob1x.jpeg";
+  3  import notFoundMobImg2x from "../assets/img/404errormob2x.jpeg";

@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import notFoundMobImg from "../assets/img/404-mob@1x.webp";
-import notFoundMobImg2x from "../assets/img/404-mob@2x.webp";
-import notFoundTabImg from "../assets/img/404-tab@1x.webp";
-import notFoundTabImg2x from "../assets/img/404-tab@2x.webp";
-import notFoundDeskImg from "../assets/img/404-desk@1x.webp";
-import notFoundDeskImg2x from "../assets/img/404-desk@2x.webp";
+import notFoundMobImg from "../assets/img/404errormob1x.jpeg";
+import notFoundMobImg2x from "../assets/img/404errormob2x.jpeg";
+import notFoundTabImg from "../assets/img/404errortab1x.jpeg";
+import notFoundTabImg2x from "../assets/img/404errortab2x.jpeg";
+import notFoundDeskImg from "../assets/img/404errordesk1x.jpeg";
+import notFoundDeskImg2x from "../assets/img/404errordesk2x.jpeg";
 
 const NotFoundPage = () => {
   return (
