@@ -1,6 +1,6 @@
 import sprite from "../assets/sprite.svg";
-import dogImg from "../assets/img/dog@1x.webp";
-import dogImg2x from "../assets/img/dog@2x.webp";
+import dogImg from "../assets/img/dog1.jpeg";
+import dogImg2x from "../assets/img/dog2.jpeg";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
 

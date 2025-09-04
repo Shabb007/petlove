@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchFriends } from "./operation.js";
+import { fetchFriends } from "./operations.js";
 
 const initialState = {
   friends: [],

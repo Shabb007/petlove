@@ -1,5 +1,5 @@
 import Title from "../components/Title.jsx";
-import FriendsList from "../components/FriendsList.jsx";
+import FriendsList from "../components/FriendList.jsx";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchFriends } from "../redux/friends/operations.js";
