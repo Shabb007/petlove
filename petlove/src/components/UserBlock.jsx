@@ -56,7 +56,7 @@ const UserBlock = ({ openModalEdit }) => {
           </li>
         ) : (
           <li className="h-10.5 w-full rounded-[30px] border border-black/15 bg-transparent p-3 tracking-[-0.42px] md:h-13 md:w-[305px] md:p-4 md:text-base md:leading-5 md:tracking-[-0.03em] xl:w-full">
-            +380
+            Add phone number
           </li>
         )}
       </ul>

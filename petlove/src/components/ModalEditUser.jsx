@@ -20,10 +20,10 @@ const userSchema = yup.object().shape({
     .string()
     .test(
       "is-valid-phone",
-      "Enter a valid phone number (e.g., +380123456789)",
+      "Enter a valid phone number (e.g., 0533XXXXXXXXX)",
       (value) => {
         if (!value) return true;
-        const phonePattern = /^\+38\d{10}$/;
+        const phonePattern = /^\05\d{10}$/;
         return phonePattern.test(value);
       }
     ),
@@ -255,7 +255,7 @@ const ModalEditUser = ({ isOpen, onClose }) => {
                   type="text"
                   id="phone"
                   name="phone"
-                  placeholder="+380"
+                  placeholder="Telephone number"
                   value={formValues.phone}
                   onChange={handleInputChange}
                 />
