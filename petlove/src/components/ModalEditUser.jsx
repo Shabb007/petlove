@@ -68,6 +68,12 @@ const ModalEditUser = ({ isOpen, onClose }) => {
   } = useForm({
     resolver: yupResolver(userSchema),
     mode: "onSubmit",
+    defaultValues: {
+      name: name || "",
+      email: email || "",
+      phone: phone || "",
+      avatar: avatar || "",
+    },
   });
 
   const handleInputChange = (e) => {
@@ -108,7 +114,11 @@ const ModalEditUser = ({ isOpen, onClose }) => {
   };
 
   const onSubmit = (data) => {
-    dispatch(updateUser(data));
+    const userData = {
+      ...data,
+      avatar: formValues.avatar || data.avatar,
+    };
+    dispatch(updateUser(userData));
     if (error) {
       return;
     }
@@ -214,8 +224,6 @@ const ModalEditUser = ({ isOpen, onClose }) => {
                   id="name"
                   name="name"
                   placeholder="Name"
-                  value={formValues.name}
-                  onChange={handleInputChange}
                 />
                 {errors.name && (
                   <p className="text-red mt-1 pl-3 text-xs leading-3.5 tracking-[-0.36px]">
@@ -235,8 +243,6 @@ const ModalEditUser = ({ isOpen, onClose }) => {
                   id="email"
                   name="email"
                   placeholder="name@gmail.com"
-                  value={formValues.email}
-                  onChange={handleInputChange}
                 />
                 {errors.email && (
                   <p className="text-red mt-1 pl-3 text-xs leading-3.5 tracking-[-0.36px]">
@@ -256,8 +262,6 @@ const ModalEditUser = ({ isOpen, onClose }) => {
                   id="phone"
                   name="phone"
                   placeholder="Telephone number"
-                  value={formValues.phone}
-                  onChange={handleInputChange}
                 />
                 {errors.phone && (
                   <p className="text-red mt-1 pl-3 text-xs leading-3.5 tracking-[-0.36px]">
