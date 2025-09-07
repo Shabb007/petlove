@@ -20,10 +20,10 @@ const userSchema = yup.object().shape({
     .string()
     .test(
       "is-valid-phone",
-      "Enter a valid phone number (e.g., 0533XXXXXXXXX)",
+      "Enter a valid phone number (e.g., 05331234567)",
       (value) => {
         if (!value) return true;
-        const phonePattern = /^05\d{10}$/;
+        const phonePattern = /^05\d{9}$/;
         return phonePattern.test(value);
       }
     ),
