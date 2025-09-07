@@ -10,6 +10,17 @@ const UserBlock = ({ openModalEdit }) => {
   }
   const { name, email, phone, avatar } = user;
 
+  // Convert Ukrainian phone format (+38XXXXXXXXXX) to Turkish format (05XXXXXXXXX) for display
+  const convertUkrainianToTurkishPhone = (ukrainianPhone) => {
+    if (!ukrainianPhone || !ukrainianPhone.startsWith('+38')) {
+      return ukrainianPhone;
+    }
+    // Convert +380XXXXXXXXX to 05XXXXXXXXX
+    return '0' + ukrainianPhone.substring(3);
+  };
+
+  const displayPhone = convertUkrainianToTurkishPhone(phone);
+
   return (
     <div className="mb-10">
       <div
@@ -50,9 +61,9 @@ const UserBlock = ({ openModalEdit }) => {
         <li className="border-orange h-10.5 w-full rounded-[30px] border bg-transparent p-3 tracking-[-0.42px] md:h-13 md:w-[305px] md:p-4 md:text-base md:leading-5 md:tracking-[-0.03em] xl:w-full">
           {email}
         </li>
-        {phone ? (
+        {displayPhone ? (
           <li className="border-orange h-10.5 w-full rounded-[30px] border bg-transparent p-3 tracking-[-0.42px] md:h-13 md:w-[305px] md:p-4 md:text-base md:leading-5 md:tracking-[-0.03em] xl:w-full">
-            {phone}
+            {displayPhone}
           </li>
         ) : (
           <li className="h-10.5 w-full rounded-[30px] border border-black/15 bg-transparent p-3 tracking-[-0.42px] md:h-13 md:w-[305px] md:p-4 md:text-base md:leading-5 md:tracking-[-0.03em] xl:w-full">

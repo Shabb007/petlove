@@ -147,12 +147,15 @@ export const updateUser = createAsyncThunk(
       return thunkAPI.rejectWithValue("No valid token");
     }
     setAuthHeader(savedToken);
+    console.log("API request data:", userData);
     try {
       const { data } = await petloveApi.patch("/users/current/edit", userData);
       toast.success("User information updated successfully!");
       return data;
     } catch (error) {
-      if (error.status === 400) {
+      console.log("API Error:", error);
+      console.log("Error response:", error.response);
+      if (error.response?.status === 400) {
         toast.error("Invalid request body!");
         return thunkAPI.rejectWithValue("Invalid request body!");
       }

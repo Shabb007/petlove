@@ -57,6 +57,24 @@ const ModalEditUser = ({ isOpen, onClose }) => {
     avatar: avatar,
   });
 
+  // Convert Turkish phone format (05XXXXXXXXX) to Ukrainian format (+38XXXXXXXXXX)
+  const convertTurkishToUkrainianPhone = (turkishPhone) => {
+    if (!turkishPhone || !turkishPhone.startsWith('05')) {
+      return turkishPhone;
+    }
+    // Convert 05XXXXXXXXX to +380XXXXXXXXX
+    return '+38' + turkishPhone.substring(1);
+  };
+
+  // Convert Ukrainian phone format (+38XXXXXXXXXX) to Turkish format (05XXXXXXXXX) for display
+  const convertUkrainianToTurkishPhone = (ukrainianPhone) => {
+    if (!ukrainianPhone || !ukrainianPhone.startsWith('+38')) {
+      return ukrainianPhone;
+    }
+    // Convert +380XXXXXXXXX to 05XXXXXXXXX
+    return '0' + ukrainianPhone.substring(3);
+  };
+
   useEffect(() => {
     setFormValues({ name, email, phone, avatar });
   }, [name, email, phone, avatar]);
@@ -71,7 +89,7 @@ const ModalEditUser = ({ isOpen, onClose }) => {
     defaultValues: {
       name: name || "",
       email: email || "",
-      phone: phone || "",
+      phone: convertUkrainianToTurkishPhone(phone) || "",
       avatar: avatar || "",
     },
   });
@@ -114,11 +132,22 @@ const ModalEditUser = ({ isOpen, onClose }) => {
   };
 
   const onSubmit = (data) => {
-    const userData = {
-      ...data,
-      avatar: formValues.avatar || data.avatar,
-    };
+    // Filter out empty strings and undefined values
+    const userData = Object.fromEntries(
+      Object.entries({
+        ...data,
+        avatar: formValues.avatar || data.avatar,
+      }).filter(([key, value]) => value !== "" && value !== undefined && value !== null)
+    );
+    
+    // Convert Turkish phone to Ukrainian format for backend
+    if (userData.phone) {
+      userData.phone = convertTurkishToUkrainianPhone(userData.phone);
+    }
+    
+    console.log("Form data being sent:", userData);
     dispatch(updateUser(userData));
+    
     if (error) {
       return;
     }
@@ -261,7 +290,7 @@ const ModalEditUser = ({ isOpen, onClose }) => {
                   type="text"
                   id="phone"
                   name="phone"
-                  placeholder="Telephone number"
+                  placeholder="05331234567"
                 />
                 {errors.phone && (
                   <p className="text-red mt-1 pl-3 text-xs leading-3.5 tracking-[-0.36px]">
