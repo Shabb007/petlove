@@ -1,0 +1,11 @@
+{
+  "buildCommand": "cd petlove && npm install && npm run build",
+  "outputDirectory": "petlove/dist",
+  "installCommand": "cd petlove && npm install",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
