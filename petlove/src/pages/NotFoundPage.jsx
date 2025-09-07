@@ -3,7 +3,7 @@ import notFoundMobImg from "../assets/img/404errormob1x.jpeg";
 import notFoundMobImg2x from "../assets/img/404errormob2x.jpeg";
 import notFoundTabImg from "../assets/img/404errortab1x.jpeg";
 import notFoundTabImg2x from "../assets/img/404errortab2x.jpeg";
-import notFoundDeskImg from "../assets/img/404errordesk1x.jpeg";
+import notFoundDeskImg from "../assets/img/404error1.jpeg";
 import notFoundDeskImg2x from "../assets/img/404errordesk2x.jpeg";
 
 const NotFoundPage = () => {
