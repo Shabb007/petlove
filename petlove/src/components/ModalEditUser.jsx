@@ -23,7 +23,7 @@ const userSchema = yup.object().shape({
       "Enter a valid phone number (e.g., 0533XXXXXXXXX)",
       (value) => {
         if (!value) return true;
-        const phonePattern = /^\05\d{10}$/;
+        const phonePattern = /^05\d{10}$/;
         return phonePattern.test(value);
       }
     ),
@@ -107,8 +107,8 @@ const ModalEditUser = ({ isOpen, onClose }) => {
     }
   };
 
-  const onSubmit = () => {
-    dispatch(updateUser(formValues));
+  const onSubmit = (data) => {
+    dispatch(updateUser(data));
     if (error) {
       return;
     }
